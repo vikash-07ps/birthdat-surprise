@@ -16,7 +16,10 @@
       height: 100vh;
       animation: fadeIn 2s ease-in;
       font-family: 'Great Vibes', cursive;
-      background: linear-gradient(to top right, #ffecd2 0%, #fcb69f 100%);
+      background-image: url('photoes/background_image1.png'); /* relative path */
+      background-size: cover;       /* scales image to cover entire screen */
+      background-position: center;  /* centers the image */
+      background-repeat: no-repeat;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -62,7 +65,7 @@
     }
 
     .btn:disabled {
-      background: #ccc;
+      background: #b88b8b;
       cursor: not-allowed;
     }
 
