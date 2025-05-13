@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Preeti ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 20px;
+      animation: fadeInDown 2s ease;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+      color: #c12b99;
+      text-shadow: 2px 2px #e57373;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      padding: 20px;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .card {
+      perspective: 1000px;
+      cursor: pointer;
+      height: 600px;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-front {
+      background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+      z-index: 2;
+    }
+
+    .card-back {
+      background: linear-gradient(135deg, #e0f7ff, #d1c4e9);
+      transform: rotateY(180deg);
+    }
+
+    .card-front img,
+    .card-back img {
+      width: 100%;
+      height: 535px;
+      object-fit: cover;
+    }
+    .card-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+    
+    
+    .message, #ageMessage {
+      font-family: 'Great Vibes', cursive;
+      text-align: center;
+      padding: 10px;
+      font-size: 1.8rem;
+      color: #36155f;
+      animation: fadeInDown 2s ease;
+
+    }
+    .message{
+      font-size: 1.5rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .skyshot {
+      position: fixed;
+      width: 3px;
+      height: 40px;
+      background: linear-gradient(to top, #fff700, #ff2f00);
+      bottom: 0;
+      border-radius: 50%;
+      z-index: 997;
+      animation: shoot 1.4s ease-out forwards;
+    }
+
+    @keyframes shoot {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-85vh) scaleY(3) scaleX(0.5); opacity: 0.7; }
+    }
+
+    .sparkle {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: red;
+      z-index: 996;
+      animation: sparkleAnim 1s ease-out forwards;
+    }
+
+    @keyframes sparkleAnim {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(3); opacity: 0; }
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 2rem;
+      color: #c12b99;
+      font-family: 'Great Vibes', cursive;
+    }
+
+    .controls {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 999;
+    }
+
+    .controls button {
+      padding: 10px 15px;
+      background: rgb(212, 143, 143);
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .personal-message {
+      text-align: center;
+      font-size: 1.8rem;
+      color: #a647ad;
+      margin-top: 20px;
+      animation: fadeIn 2s ease-in;
+      font-family: 'Great Vibes', cursive;
+      padding: 0 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      .card {
+        height: 400px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎉 Happy Birthday Preeti 💖 🎂</h1>
+  </header>
+
+  <div class="personal-message">
+    <p id="typed-message"></p>
+  </div>
+
+  
+  <div id ="ageMessage"></div>
+
+  <div class="controls">
+    <button onclick="toggleMusic()">🎵 Play Music</button>
+    <button onclick="toggleCrackers()">🎆 Toggle Crackers</button>
+    <button onclick="toggleSkyshots()">✨ Toggle Skyshots</button>
+  </div>
+
+  <audio id="bg-music">
+    <source src="musics/birthday_music.mp3" type="audio/mp3" />
+  </audio>
+
+  <audio id="cracker-sound">
+    <source src="musics/crackers_sound.mp3" type="audio/mp3" />
+  </audio>
+
+  <div class="gallery" id="gallery"></div>
+  <footer>With love and best wishes 💖</footer>
+
+  <script>
+    
+    const imageQuotes = [
+      "A day to celebrate you! 🎈", "Let your smile shine! 😄",
+      "Sweet moments and sweeter memories 🍰", "Floating with happiness 🎈",
+      "A gift of love and joy 🎁", "Cherishing every celebration 🎊",
+      "Layers of love and cake 🎂", "Light up the sky like you light up lives ✨",
+      "Surrounded by those who care 💞", "A day full of joy and laughter 😍",
+      "Color your day with happiness 🎉", "Make a wish and blow out the candles 🕯️",
+      "Sprinkled with sweetness 🧁","Moments made magical just for you 🌈", "Decorated with love and care 🎀",
+      "Overflowing with blessings 🌟"
+    ];
+
+    const gallery = document.getElementById('gallery');
+    imageQuotes.forEach((quote, i) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="photoes/${i + 1}front.png" alt="Front Image ${i + 1}">
+            <div class="message">${quote}</div>
+          </div>
+          <div class="card-back">
+            <img src="photoes/${i + 1}back.jpg" alt="Back Image ${i + 1}">
+          </div>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        card.classList.add('flipped');
+        setTimeout(() => card.classList.remove('flipped'), 5000);
+      });
+      gallery.appendChild(card);
+    });
+
+    function toggleMusic() {
+      const music = document.getElementById('bg-music');
+      const button = document.querySelector('.controls button');
+      if (music.paused) {
+        music.play();
+        button.textContent = "⏸ Pause Music";
+      } else {
+        music.pause();
+        button.textContent = "🎵 Play Music";
+      }
+    }
+
+    let crackerInterval, skyshotInterval, balloonInterval;
+
+    function toggleCrackers() {
+      const sound = document.getElementById('cracker-sound');
+      if (crackerInterval) {
+        clearInterval(crackerInterval);
+        crackerInterval = null;
+        sound.pause();
+        sound.currentTime = 0;
+      } else {
+        sound.currentTime = 0;
+        sound.play();
+        crackerInterval = setInterval(() => createCracker(), 120);
+        setTimeout(toggleCrackers, 70000);
+      }
+    }
+
+    function createCracker() {
+      const particle = document.createElement('div');
+      particle.style.position = 'fixed';
+      particle.style.width = '20px';
+      particle.style.height = '20px';
+      particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+      particle.style.left = Math.random() * window.innerWidth + 'px';
+      particle.style.top = Math.random() * window.innerHeight + 'px';
+      particle.style.borderRadius = '50%';
+      particle.style.zIndex = 998;
+
+      particle.animate([
+        { transform: 'scale(1)', opacity: 1 },
+        { transform: 'scale(2)', opacity: 0 }
+      ], {
+        duration: 2500,
+        easing: 'ease-out',
+        fill: 'forwards'
+      });
+
+      document.body.appendChild(particle);
+      setTimeout(() => particle.remove(), 2500);
+    }
+
+    function toggleSkyshots() {
+      const sound = document.getElementById('cracker-sound');
+      if (skyshotInterval) {
+        clearInterval(skyshotInterval);
+        skyshotInterval = null;
+        sound.pause();
+        sound.currentTime = 0;
+      } else {
+        sound.currentTime = 0;
+        sound.play();
+        skyshotInterval = setInterval(() => {
+          const skyshot = document.createElement('div');
+          skyshot.className = 'skyshot';
+          skyshot.style.left = `${Math.random() * window.innerWidth}px`;
+          document.body.appendChild(skyshot);
+          setTimeout(() => {
+            createSparkle(Math.random() * window.innerWidth, window.innerHeight * 0.15);
+            skyshot.remove();
+          }, 1400);
+        }, 400);
+      }
+    }
+
+    function createSparkle(x, y) {
+      for (let i = 0; i < 100; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = `${x}px`;
+        sparkle.style.top = `${y}px`;
+        sparkle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = Math.random() * 60 + 20;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+
+        sparkle.animate([
+          { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+          { transform: `translate(${dx}px, ${dy}px) scale(2)`, opacity: 0 }
+        ], {
+          duration: 2000,
+          easing: 'ease-out',
+          fill: 'forwards'
+        });
+
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 2000);
+      }
+    }
+
+    const fullMessage = "Dear Preeti, wishing you a day filled with laughter, love, and unforgettable memories. You deserve all the happiness in the world! ❤️";
+    let i = 0;
+    const typedMessage = document.getElementById('typed-message');
+    function typeWriter() {
+      if (i < fullMessage.length) {
+        typedMessage.innerHTML += fullMessage.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      }
+    }
+
+    function calculateAge() {
+      const birthDate = new Date('May 18, 2004');
+      const now = new Date();
+
+      let ageYears = now.getFullYear() - birthDate.getFullYear();
+      let ageMonths = now.getMonth() - birthDate.getMonth();
+      let ageDays = now.getDate() - birthDate.getDate();
+
+      if (ageMonths < 0) {
+        ageYears--;
+        ageMonths += 12;
+      }
+
+      if (ageDays < 0) {
+        ageMonths--;
+        const daysInPreviousMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+        ageDays += daysInPreviousMonth;
+      }
+
+      return {
+        years: ageYears,
+        months: ageMonths,
+        days: ageDays
+      };
+    }
+
+    function updateAge() {
+    const age = calculateAge();
+    const ageMessage = `You've been gracefully dancing through time on Earth for ${age.years} years, ${age.months} months, and ${age.days} days, painting each moment with your light since May 18, 2004. 🌸`;
+    document.getElementById('ageMessage').textContent = ageMessage;
+  }
+    updateAge();
+    typeWriter();
+  </script>
+</body>
+</html>
