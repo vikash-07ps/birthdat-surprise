@@ -138,8 +138,8 @@
 
     .sparkle {
       position: fixed;
-      width: 2.5px;
-      height: 2.5px;
+      width: 1.5px;
+      height: 1.5px;
       border-radius: 50%;
       background-color: red;
       z-index: 996;
@@ -209,7 +209,7 @@
       .controls button {
         font-size: 9px;
         padding: 3.5px 2px;
-
+        font-weight: bold;
       }
     }
 
@@ -356,7 +356,7 @@
     }
 
     function createSparkle(x, y) {
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 80; i++) {
         const sparkle = document.createElement('div');
         sparkle.className = 'sparkle';
         sparkle.style.left = `${x}px`;
