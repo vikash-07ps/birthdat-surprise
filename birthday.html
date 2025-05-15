@@ -34,8 +34,8 @@
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
       padding: 20px;
       animation: fadeIn 2s ease-in;
     }
@@ -51,11 +51,11 @@
       width: 100%;
       height: 100%;
       transform-style: preserve-3d;
-      transition: transform 1s ease;
+      transition: transform 6s ease;
     }
 
     .card.flipped .card-inner {
-      transform: rotateY(180deg);
+      transform: rotateY(540deg);
     }
 
     .card-front,
@@ -128,7 +128,7 @@
       bottom: 0;
       border-radius: 50%;
       z-index: 997;
-      animation: shoot 1.4s ease-out forwards;
+      animation: shoot 1.4s ease-out forwards ;
     }
 
     @keyframes shoot {
@@ -138,12 +138,12 @@
 
     .sparkle {
       position: fixed;
-      width: 4px;
-      height: 4px;
+      width: 2.5px;
+      height: 2.5px;
       border-radius: 50%;
       background-color: red;
       z-index: 996;
-      animation: sparkleAnim 1s ease-out forwards;
+      animation: sparkleAnim 0.5s ease-out forwards;
     }
 
     @keyframes sparkleAnim {
@@ -170,14 +170,24 @@
     }
 
     .controls button {
-      padding: 10px 15px;
-      background: rgb(212, 143, 143);
+      padding: 7px 5px;
+      font-family: 'Segoi ui', cursive;
+      font-style: italic;
+      background: linear-gradient(to bottom, #f7c1c1, #d48f8f);
       border: none;
       border-radius: 15px;
       cursor: pointer;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 12px;
+      box-shadow: 0 4px #b36b6b;
+      transition: all 0.2s ease;
     }
+
+    .controls button:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px #b36b6b;
+    }
+
 
     .personal-message {
       text-align: center;
@@ -194,7 +204,12 @@
         font-size: 2.5rem;
       }
       .card {
-        height: 400px;
+        height: 600px;
+      }
+      .controls button {
+        font-size: 7.5px;
+        padding: 3.5px 2px;
+
       }
     }
 
@@ -227,7 +242,7 @@
   </audio>
 
   <div class="gallery" id="gallery"></div>
-  <footer>With love and best wishes 💖</footer>
+  <footer>With Love and Best Wishes 💖<br>Made By Vikash Prasad Sahu</footer>
 
   <script>
     
@@ -238,8 +253,8 @@
       "Layers of love and cake 🎂", "Light up the sky like you light up lives ✨",
       "Surrounded by those who care 💞", "A day full of joy and laughter 😍",
       "Color your day with happiness 🎉", "Make a wish and blow out the candles 🕯️",
-      "Sprinkled with sweetness 🧁","Moments made magical just for you 🌈", "Decorated with love and care 🎀",
-      "Overflowing with blessings 🌟"
+      "Sprinkled with sweetness 🧁","Moments made magical just for you 🌈",
+      "Decorated with love and care 🎀", "Overflowing with blessings 🌟"
     ];
 
     const gallery = document.getElementById('gallery');
@@ -259,7 +274,7 @@
       `;
       card.addEventListener('click', () => {
         card.classList.add('flipped');
-        setTimeout(() => card.classList.remove('flipped'), 5000);
+        setTimeout(() => card.classList.remove('flipped'), 8300);
       });
       gallery.appendChild(card);
     });
@@ -296,8 +311,8 @@
     function createCracker() {
       const particle = document.createElement('div');
       particle.style.position = 'fixed';
-      particle.style.width = '20px';
-      particle.style.height = '20px';
+      particle.style.width = '16px';
+      particle.style.height = '16px';
       particle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
       particle.style.left = Math.random() * window.innerWidth + 'px';
       particle.style.top = Math.random() * window.innerHeight + 'px';
@@ -333,15 +348,15 @@
           skyshot.style.left = `${Math.random() * window.innerWidth}px`;
           document.body.appendChild(skyshot);
           setTimeout(() => {
-            createSparkle(Math.random() * window.innerWidth, window.innerHeight * 0.15);
+            createSparkle(Math.random() * window.innerWidth, window.innerHeight * 0.25);
             skyshot.remove();
-          }, 1400);
+          }, 1000);
         }, 400);
       }
     }
 
     function createSparkle(x, y) {
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 170; i++) {
         const sparkle = document.createElement('div');
         sparkle.className = 'sparkle';
         sparkle.style.left = `${x}px`;
