@@ -3,154 +3,198 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
   <title>Surprise for Preeti 🎉</title>
   <style>
-    :root {
-      --main-bg: linear-gradient(to top right, #ffecd2, #fcb69f);
-      --primary-color: #ff4081;
-      --hover-color: #f50057;
-      --text-color: #333;
-      --font-body:'Segoe UI', sans-serif ;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      font-family: var(--font-body);
-      background: var(--main-bg);
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       height: 100vh;
-    }
-
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      padding: 20px;
-    }
-
-    .popup-box {
-      background: #ffffff;
-      width: 100%;
-      max-width: 500px;
-      height: 430px;
-      border-radius: 15px;
-      padding: 30px 25px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 2s ease-in;
+      font-family: 'Great Vibes', cursive;
+      background-image: url('photoes/background_image1.png'); /* relative path */
+      background-size: cover;       /* scales image to cover entire screen */
+      background-position: center;  /* centers the image */
+      background-repeat: no-repeat;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      transition: all 1s ease;
     }
 
-    .popup-box h2 {
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      color: var(--primary-color);
-      margin-bottom: 10px;
+    h1 {
+      font-size: 3rem;
+      color: #c2185b;
       text-align: center;
+      margin-bottom: 30px;
+      animation: popIn 1.5s ease-out forwards;
+      text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.6);
     }
 
-    .popup-box p {
-      font-size: 1rem;
-      color: var(--text-color);
-      overflow-y: auto;
-      flex: 1;
+    .countdown {
+      font-size: 1.5rem;
+      color: #6a1b9a;
       margin-bottom: 20px;
+      animation: fadeIn 2s ease;
     }
 
-    .popup-box input {
-      padding: 12px;
-      border: 1px solid #b3b3b3;
-      border-radius: 25px;
-      width: 94%;
-      font-size: 1rem;
-      margin-bottom: 15px;
-    }
-
-    .popup-box button {
-      padding: 12px;
+    .btn {
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      background: #ff4081;
+      color: white;
       border: none;
-      border-radius: 25px;
-      background-color: var(--primary-color);
-      color: #fff;
-      font-weight: bold;
+      border-radius: 30px;
       cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s ease;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      transition: transform 0.3s, background 0.3s;
+      animation: fadeIn 2s ease forwards;
+      font-family: 'Great Vibes', cursive;
     }
 
-    .popup-box button:hover {
-      background-color: var(--hover-color);
+    .btn:hover {
+      background: #f50057;
+      transform: scale(1.05);
     }
 
-    @media (max-width: 600px) {
-      .popup-box {
-        height: auto;
-        max-height: 90vh;
+    .btn:disabled {
+      background: #b88b8b;
+      cursor: not-allowed;
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
       }
-
-      .popup-box p {
-        max-height: 180px;
+      to {
+        transform: scale(1);
+        opacity: 1;
       }
     }
 
-    h1, .countdown, .btn {
-      display: none;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
+
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 40px;
+      height: 60px;
+      background: radial-gradient(circle, #ff8a65, #d84315);
+      border-radius: 50% 50% 50% 50%;
+      animation: floatUp 10s linear infinite;
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #333;
+      transform: translateX(-50%);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: hsl(calc(var(--hue) * 1deg), 100%, 60%);
+      animation: confettiFall 5s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(-10px) rotate(0);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: scale(1.1);
+      transition: all 1s ease;
+    }
+
+    
   </style>
 </head>
 <body>
-  <div class="popup-overlay" id="popup">
-    <div class="popup-box">
-      <h2>Important Note</h2>
-      <p style="text-align: center;">
-        "Preeti, I created this gift with a lot of love and effort, hoping it would make you feel special.
-        But since you haven't shared anything about it on your story or even acknowledged it with a thank you,
-        I’ve been feeling quite disheartened and unappreciated. It means a lot to me, and I genuinely put my heart
-        into it. If it doesn’t matter to you, I plan to take the website down by June 5th, 2025."
-      </p>
-      <div>
-        <p><strong>Do you want to say something now or I delete this Website Permanently</strong></p>
-        <input type="text" id="messageText" placeholder="Your Message..." />
-        <button onclick="submitMessage()">Send Message</button>
-      </div>
-    </div>
-  </div>
 
+  <h1>Preeti are you excited for a beautiful surprise? 🎁</h1>
+  <div class="countdown" id="countdown">Revealing in 10...</div>
+  <button class="btn" id="surpriseBtn" onclick="startTransition()" disabled>Click here!</button>
+
+  <!-- Balloons -->
   <script>
-    function submitMessage() {
-      const message = document.getElementById('messageText').value.trim();
-      if (!message) {
-        alert('Please write a message to continue.');
-        return;
-      }
+    // 🎈 Balloons & Confetti
+    for (let i = 0; i < 15; i++) {
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      balloon.style.left = `${Math.random() * 100}%`;
+      balloon.style.background = `radial-gradient(circle, hsl(${Math.random()*360}, 100%, 70%), hsl(${Math.random()*360}, 100%, 50%))`;
+      balloon.style.animationDuration = `${6 + Math.random() * 5}s`;
+      document.body.appendChild(balloon);
+    }
 
-      fetch('https://formsubmit.co/ajax/vikashprasadsahu11@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({ message })
-      })
-      .then(response => response.json())
-      .then(data => {
-        alert("Message sent successfully!");
-        document.getElementById('popup').innerHTML = "<h2 style='color:white; text-align:center;'>Thank you 💖</h2>";
-      })
-      .catch(error => alert("Failed to send message. Please try again."));
+    for (let i = 0; i < 50; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = `${Math.random() * 100}%`;
+      confetti.style.top = `${Math.random() * 100}vh`;
+      confetti.style.setProperty('--hue', Math.floor(Math.random() * 360));
+      confetti.style.animationDelay = `${Math.random() * 5}s`;
+      confetti.style.animationDuration = `${3 + Math.random() * 2}s`;
+      document.body.appendChild(confetti);
+    }
+
+    // ⏳ Countdown
+    let countdown = 10;
+    const countdownElement = document.getElementById('countdown');
+    const button = document.getElementById('surpriseBtn');
+
+    const timer = setInterval(() => {
+      countdown--;
+      if (countdown > 0) {
+        countdownElement.textContent = `Revealing in ${countdown}...`;
+      } else {
+        clearInterval(timer);
+        countdownElement.textContent = "Ready to reveal!";
+        button.disabled = false;
+      }
+    }, 1000);
+
+    // 🎬 Transition to next page
+    function startTransition() {
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = 'birthday.html'; // ⬅️ change if needed
+      }, 1000);
     }
   </script>
 </body>
